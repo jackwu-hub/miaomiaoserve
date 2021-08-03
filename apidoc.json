@@ -1,0 +1,19 @@
+
+{
+    "name": "User API Document",
+    "version": "0.0.0",
+    "description": "A sample of User API document generated from apiDoc",
+    "title": "User API",
+    "header": {  
+      "title": "Overview",
+      "filename": "header.md"
+    },
+    "footer": {
+      "title": "Copyright",
+      "filename": "footer.md"
+    },
+    "template": {
+      "withCompare": true, 
+      "withGenerator": true
+    }
+  }
