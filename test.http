@@ -18,8 +18,8 @@ POST http://localhost:3000/api2/users/login
 Content-Type: application/json
 
 {
-    "username": "123",
-    "password": "bbbb"
+    "username": "admin",
+    "password": "12"
 }
 
 ### 获取用户信息

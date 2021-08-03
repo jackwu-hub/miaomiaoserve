@@ -4,6 +4,33 @@ var {setCrypto, createVerify}=require('../untils/base.js')
 var fs=require('fs') //引入文件操作
 var url=require('url')
 //登陆
+/**
+ * @api {post} /api2/users/login Login 
+ * @apiName login
+ * @apiGroup User
+ * @apiParam {String} username 用户名
+ * @apiParam {String} password 密码
+ * @apiParamExample {json} request-example
+ * {
+ *  "username": "123",
+ *  "password": "bbbb"
+ * } 
+ * @apiError {String} msg 错误信息
+ * @apiErrorExample {json} error-example
+    {
+    "msg": "登录失败,密码错误",
+    "status": -3
+    }
+ * 
+ * @apiSussess {String} username 用户名
+ * @apiSussess {String} password 密码
+ * @apiSuccessExample {json} success-example
+ * {
+    * "msg": "登录成功",
+    *  "status": 0
+ *  }
+ * @apiSampleRequest off
+ */
 var login=async(req,res,next)=>{
     var {username,password,verifyImg}=req.body
 
@@ -17,7 +44,7 @@ var login=async(req,res,next)=>{
 
     var result=await UserModel.findLogin({
         username,
-        password: setCrypto(password)
+        password: setCrypto(password) //密码加密
     })
     if(result){
 
@@ -121,6 +148,36 @@ var logout=async(req,res,next)=>{
     })
 }
 //获取用户信息
+/**
+ *  @api {get} /api2/users/getUser getUser
+    @apiVersion 0.0.0
+    @apiName getUser
+    @apiGroup User
+
+    @apiDescription API to get the user information.
+
+    @apiSuccess {Object} userInfo Info of the User.
+    @apiSuccessExample {json} Success-Response:
+        HTTP/1.1 200 OK
+        {
+            "msg": "获取用户信息成功",
+            "status": 0,
+            "data": {
+                "username": "admin",
+                "isAdmin": true,
+                "userHead": "http://localhost:3000/uploads/admin.jpeg"
+            }
+        }
+
+    @apiError UserNotFound The <code>user_id</code> of the User was not found.
+
+    @apiErrorExample {json} Error-Response:
+        HTTP/1.1 404 Not Found
+        {
+            "msg": "获取用户信息失败",
+            "status": -5
+        }
+ */
 var getUser=async(req,res,next)=>{
     if(req.session.username){
         res.send({
