@@ -1,0 +1,43 @@
+
+### 发送验证码
+GET http://localhost:3000/api2/users/verify?email=542910960@qq.com
+
+### 注册
+POST http://localhost:3000/api2/users/register
+Content-Type: application/json
+
+{
+    "username": "123",
+    "password": "bbbb",
+    "email": "542910960@qq.com",
+    "verify": "5080"
+}
+
+### 登陆
+POST http://localhost:3000/api2/users/login
+Content-Type: application/json
+
+{
+    "username": "123",
+    "password": "bbbb"
+}
+
+### 获取用户信息
+GET http://localhost:3000/api2/users/getUser
+
+### 退出
+GET http://localhost:3000/api2/users/logout
+
+### 修改密码
+POST http://localhost:3000/api2/users/findPassword
+Content-Type: application/json
+
+{
+    "email": "542910960@qq.com",
+    "password": "123",
+    "verify": "9263"
+}
+
+
+### 测试管理员接口
+GET http://localhost:3000/api2/admin
